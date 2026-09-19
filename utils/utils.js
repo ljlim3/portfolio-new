@@ -15,7 +15,6 @@ export async function fetchHtmlContent(url) {
     const doc = parser.parseFromString(htmlText, 'text/html'); // process the string of data as a structured HTML document
 
     return doc;
-    // return htmlText;
 
   } catch (error) {
     console.error('Failed to fetch external html: ', error);

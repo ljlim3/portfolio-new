@@ -1,7 +1,6 @@
 .carousel {
   display: flex;
   gap: 1.5rem;
-  /* width: 100%; */
   height: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -32,7 +31,6 @@ li {
 .item-label-container {
   position: absolute;
   width: 100%;
-  /* height: 52px; */
   bottom: 72px;
   padding: 1rem;
   background-color: var(--dark-theme-text);
