@@ -186,7 +186,7 @@ class AppHomeComponent extends HTMLElement {
     for (let entry of entries) {
       const viewportWidth = entry.contentRect.width;
       const viewportHeight = entry.contentRect.height;
-      this._isMobile = viewportWidth <= 480 || viewportHeight <= 480 ? true : false;
+      this._isMobile = viewportWidth <= 576 || viewportHeight <= 576 ? true : false;
     }
   }
 
