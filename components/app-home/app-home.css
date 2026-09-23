@@ -1,3 +1,11 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+button {
+  cursor: pointer;
+}
 #container {
   width: 100vw;
   height: 100vh;
@@ -15,7 +23,7 @@
 
 station-template {
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
 }
 
  /* train */
@@ -93,7 +101,7 @@ carousel-component {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 75vh);
+  height: 25vh;
 }
 .train-map-wrapper {
   display: flex;
@@ -176,11 +184,16 @@ li:nth-child(2)::before {
   top: 2rem;
   left: 50%;
   transform: translate(-50%);
-  width: 60vw;
+  width: 80vw;
+  max-width: 800px;
   height: auto;
   padding: 2rem;
   border-radius: 10px;
   background-color: var(--dark-theme-background);
+
+  &:has(.is-expanded) {
+    z-index: 3;
+  }
 
   p {
     color: var(--dark-theme-text);
@@ -206,12 +219,26 @@ li:nth-child(2)::before {
   border-radius: 5px;
 }
 
+.mobile-nav-container {
+  display: none;
+}
+.toggle-drawer-btn {
+  display: none;
+}
+
 
 /* media queries */
+@media (width > 996px) {
+  .introduction-content {
+    width: 51vw;
+    left: 35%;
+  }
+}
 @media (768px <= width <= 996px) {
   .line-one {
     font-size: 1.2rem;
     margin-top: 0.6rem;
+    margin-bottom: 0.7rem;
   }
   .line-two {
     font-size: 1.5rem;
@@ -271,8 +298,9 @@ li:nth-child(2)::before {
     transform: translate(-50%);
     right: auto;
     &::part(carousel-container) {
-      height: 280px;
+      height: 38vh;
       width: 93vw;
+      padding: 1rem;
     }
     &::part(item) {
       width: 220px;
@@ -304,5 +332,116 @@ li:nth-child(2)::before {
     width: 90vw;
     margin: 0.5rem;
     top: 35%;
+  }
+}
+
+@media (width < 576px) {
+  .inner-wrapper {
+    overscroll-behavior-x: contain;
+  }
+  .introduction-content {
+    padding: 1rem;
+    margin: 0;
+    top: 50%;
+
+    &:not(:has(.is-expanded)) {
+      width: 100vw;
+      top: 37%;
+    }
+    &:has(.is-expanded) {
+      padding: 1rem;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .toggle-drawer-btn {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    color: var(--dark-theme-caramel);
+    bottom: 0.6rem;
+    right: 1rem;
+  }
+  .extended-text {
+    display: none;
+
+    &.is-expanded {
+      display: inline;
+    }
+  }
+  carousel-component {
+    bottom: 40px;
+  }
+  .train-sign,
+  .stripe {
+    display: none;
+  }
+}
+
+/* Touch screens in landscape mode */
+@media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
+
+  .train {
+    width: 50%;
+    z-index: 3;
+  }
+  .nav-wrapper {
+    height: 27vh;
+  }
+  .line-two.single{
+    margin-bottom: 1.4rem;
+  }
+  .introduction-content {
+    top: 30%;
+    padding: 1rem;
+
+    &:has(.is-expanded) {
+      top: 65%;
+    }
+
+    &:not(:has(.is-expanded)) {
+      top: 4%;
+    }
+  }
+  .train-sign, .stripe {
+    display: none;
+  }
+  carousel-component {
+    bottom: 6px;
+
+    &::part(carousel-container) {
+      height: 62vh;
+      padding: 1rem;
+    }
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) and (width > 740px) {
+  .introduction-content {
+    left: 34vw;
+    width: 63vw;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) and (max-width: 740px) {
+  station-template {
+    &:not(:first-of-type) {
+      &::part(train-station-signage) {
+        display: none;
+      }
+    }
+  }
+  .introduction-content {
+    &:has(.is-expanded) {
+      top: 53%;
+    }
+
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) and (max-width: 844px) {
+   .line-one {
+    margin-bottom: 0.7rem;
   }
 }

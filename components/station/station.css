@@ -16,6 +16,11 @@ a:-webkit-any-link {
   position: relative;
   width: 100%;
   height: 75vh;
+
+  @media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
+    height: 67vh;
+  }
+
 }
 .train-station-scene-wrapper .background {
   width: 100%;
@@ -218,6 +223,7 @@ li:nth-child(2)::before {
 }
 
 .scroll-direction-instruction {
+  display: block;
   position: absolute;
   right: 1rem;
   bottom: 1rem;
@@ -242,24 +248,25 @@ li:nth-child(2)::before {
     height: 364px;
   }
 }
-@media (768px <= width <= 996px) {
+@media (768px <= width <= 996px),
+  (orientation: landscape) and (max-height: 480px) {
   .train-station-signage {
     width: 261px;
-    height: 260px;
+    height: 214px;
   }
   .signage-board-outer {
     width: 259px;
-    height: 188px;
+    height: 155px;
   }
   .signage-board-outer::before,
   .signage-board-outer::after {
-    height: 260px;
+    height: 234px;
     top: -0.5rem;
-    width: 18px;
+    width: 14px;
   }
   .elongate-bars.signage-board-outer::before,
   .elongate-bars.signage-board-outer::after {
-    height: 285px;
+    height: 243px;
   }
   .signage-board-outer::before {
     left: -0.5rem;
@@ -268,8 +275,8 @@ li:nth-child(2)::before {
     right: -0.5rem;
   }
   .signage-board-inner {
-    width: 222px;
-    height: 165px;
+    width: 229px;
+    height: 145px;
   }
   .scale-down {
     bottom: -21px;
@@ -298,7 +305,33 @@ li:nth-child(2)::before {
   display: flex;
   gap: 5rem;
 }
+
 @media (width <= 767px) {
+  /* railway */
+  .railway {
+    height: 20px;
+  }
+  .railway-wood-wrapper {
+    margin-left: 1.5rem;
+    gap: 5rem;
+  }
+  .railway-wood {
+    width: 29px;
+    height: 13px;
+  }
+  .scale-down {
+    bottom: -18px;
+  }
+  .scale-down .railway-wood-wrapper,
+  .extra.visible {
+    gap: 2.5rem;
+  }
+  .scale-down .railway-wood {
+    width: 24px;
+  }
+}
+
+@media (width <= 767px) and (min-height: 480px) {
   .train-station-signage {
     top: 0;
     left: 0;
@@ -347,32 +380,7 @@ li:nth-child(2)::before {
     font-size: 0.9rem;
     bottom: 0.5rem;
   }
-
-  /* railway */
-  .railway {
-    height: 20px;
-  }
-  .railway-wood-wrapper {
-    margin-left: 1.5rem;
-    gap: 5rem;
-  }
-  .railway-wood {
-    width: 29px;
-    height: 13px;
-  }
-  .scale-down {
-    bottom: -18px;
-  }
-  .scale-down .railway-wood-wrapper,
-  .extra.visible {
-    gap: 2.5rem;
-  }
-  .scale-down .railway-wood {
-    width: 24px;
-  }
 }
-
-
 
 
 .test-modern-signage {
@@ -449,18 +457,18 @@ li:nth-child(2)::before {
     font-size: 1.6rem;
     font-weight: 500;
     /* Step 1: Define the gradient background */
-  background: linear-gradient(181deg, #a0acc9 0%, #1e293b 70%);
-  
-  /* Step 2: Clip the background to the text boundary */
-  -webkit-background-clip: text;
-  background-clip: text;
-  
-  /* Step 3: Make the original text color transparent so the gradient shows through */
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  
-  /* Optional: Ensures letters don't clip at the edges in some browsers */
-  display: inline-block; 
+    background: linear-gradient(181deg, #a0acc9 0%, #1e293b 70%);
+    
+    /* Step 2: Clip the background to the text boundary */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Step 3: Make the original text color transparent so the gradient shows through */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    /* Optional: Ensures letters don't clip at the edges in some browsers */
+    display: inline-block; 
   }
 }
 .next-stop {
@@ -479,4 +487,58 @@ li:nth-child(2)::before {
   font-weight: 500;
   color: var(--dark-theme-background);
   bottom: 0.4rem;
+}
+
+@media (pointer: coarse) {
+  .scroll-direction-instruction {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) and (max-width: 844px) and (pointer: coarse) {
+  .signage-board-outer {
+    left: 4.6rem;
+    width: 223px;
+    height: 161px;
+
+    &::before,
+    &::after {
+      top: -0.3rem;
+      height: 226px;
+      width: 10px;
+    }
+  }
+  .signage-board-inner {
+    width: 202px;
+    height: 149px;
+  }
+  .elongate-bars.signage-board-outer::before,
+  .elongate-bars.signage-board-outer::after {
+    height: 247px;
+  }
+  .stand {
+    left: 0rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) and (width < 570px) and (pointer: coarse) {
+  .signage-board-outer {
+    left: 5.7rem;
+    width: 204px;
+    height: 150px;
+    top: 2.5rem;
+
+    &::before,
+    &::after {
+      height: 206px;
+    }
+  }
+  .signage-board-inner {
+    width: 185px;
+    height: 143px;
+  }
+  .elongate-bars.signage-board-outer::before,
+  .elongate-bars.signage-board-outer::after {
+    height: 216px;
+  }
 }
