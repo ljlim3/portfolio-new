@@ -15,9 +15,12 @@
   display: flex;
   gap: 1.5rem;
   height: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch; 
+  overscroll-behavior: contain;
+  touch-action: pan-x; 
 }
 ul {
   padding: 0;
@@ -41,14 +44,13 @@ a {
   overflow: hidden;
   background-color: black;
 
-  &:hover {
-   img {
-    transform: scale(1.08);
-   }
+  @media (hover: hover) {
+    &:hover {
+      img {
+        transform: scale(1.08);
+      }
+    }
   }
-}
-.item:last-child {
-  margin-right: 1.5rem;
 }
 .item img {
   width: 100%;
@@ -74,3 +76,11 @@ a {
   color: var(--dark-theme-text);
   font-size: 1.2rem;
 }
+
+@media (width <= 576px) {
+  .carousel {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
