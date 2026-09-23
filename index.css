@@ -7,10 +7,14 @@ html {
   --dark-theme-text: #CACACA;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
@@ -248,5 +252,16 @@ li:nth-child(2)::before {
   }
   .line-two {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait),
+(max-height: 480px) and (orientation: landscape) {
+  body {
+    &:has(app-home-component) {
+      width: 100vw;
+      overflow: hidden;
+      scrollbar-width: none;
+    }
   }
 }
