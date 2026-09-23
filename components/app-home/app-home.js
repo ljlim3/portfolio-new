@@ -67,10 +67,13 @@ class AppHomeComponent extends HTMLElement {
     this.innerWrapperEl = this.shadowRoot.querySelector('.inner-wrapper');
 
     this.horizontalTween;
+    this.start = 0;
+    this.end = 0;
     
     this.userInitiatedScroll = false;
     this.prevPos = 0;
     this.screenResize = false;
+    this.currentWidth = 0;
     this.appliedLink = { home: true, intro: false, proj: false };
     this.linkMap = { 0: 'home', 1: 'introduction', 2: 'projects'};
     this.stations.forEach((station, index) => {
@@ -102,12 +105,13 @@ class AppHomeComponent extends HTMLElement {
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(ScrollToPlugin);
 
+    this.resizeObserver = new ResizeObserver((entries) => this.handleResizeObserved(entries));
+    this.resizeObserver.observe(document.body);
+
     this.setupEventListeners();
     this.scrollAnimation();
     this.handleHash();
-
-    this.start = 0;
-    this.end = 0;
+    this.handleIntroContentBtn();
   }
 
   _onScroll() {
@@ -166,15 +170,43 @@ class AppHomeComponent extends HTMLElement {
   }
 
   setupEventListeners() {
-    this.navBar.addEventListener('click', (e) => this.handleNavLinkClick(e));
+    this.navBar?.addEventListener('click', (e) => this.handleNavLinkClick(e));
     window.addEventListener('hashchange', () => this.handleHash());
 
     this.handleResize = () => {
+      this.currentWidth = window.innerWidth;
       this.screenResize = true;
     }
     window.addEventListener('resize', () => this.handleResize());
 
     window.addEventListener("scroll", this._onScroll, { passive: true });
+  }
+
+  handleResizeObserved(entries) {
+    for (let entry of entries) {
+      const viewportWidth = entry.contentRect.width;
+      const viewportHeight = entry.contentRect.height;
+      this._isMobile = viewportWidth <= 480 || viewportHeight <= 480 ? true : false;
+    }
+  }
+
+  handleIntroContentBtn() {
+    const introText = this.shadowRoot.querySelector('.extended-text');
+    const toggleDrawerBtn = this.shadowRoot.querySelector('.toggle-drawer-btn');
+    const btnText = this.shadowRoot.querySelector('.btn-text');
+
+    toggleDrawerBtn.addEventListener('click', () => {
+      if (!this._isMobile) return;
+      const isExpanded = introText.classList.toggle('is-expanded');
+
+      if (isExpanded) {
+        btnText.textContent = "Read less";
+        toggleDrawerBtn.setAttribute('aria-expanded', true);
+      } else {
+        btnText.textContent = "Read more";
+        toggleDrawerBtn.setAttribute('aria-expanded', false);
+      }
+    });
   }
 
   scrollXEvent() {
@@ -240,8 +272,7 @@ class AppHomeComponent extends HTMLElement {
           case 'introduction':
             const sectionDistance = (this.end - this.start) / 2;
             const targetY = this.start + sectionDistance * 1;
-            return targetY || window.innerWidth;
-            
+            return targetY || window.innerWidth;              
           case 'projects':
             return 'max';
         }
@@ -388,7 +419,9 @@ class AppHomeComponent extends HTMLElement {
           },
           width: () => {
             trainEl.style.bottom = self.progress > 0.2 ? "-0.3rem" : "1.5rem";
-            return self.progress > 0.2 ? "30%" : "90%"
+            return self.progress > 0.2 ? 
+                    this._isMobile ? "15%" : "30%" : 
+                    this._isMobile ? "50%" : "80%";
           },
           duration: 0.7, 
           ease: "pow2.inOut",
