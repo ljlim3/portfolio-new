@@ -7,18 +7,18 @@
    
       <slot name="body-content"></slot>
 
-      <div class="train-station-signage">
-          <div class="sign-holder"></div>
-          <div class="signage-board-outer">
-            <div class="signage-board-inner">
-              <slot name="signage-text"></slot>
-              <div class="stripe">
-                <div class="left-stop"></div>
-                <div class="right-stop"></div>
-              </div>
+      <div class="train-station-signage" part="train-station-signage">
+        <div class="sign-holder"></div>
+        <div class="signage-board-outer">
+          <div class="signage-board-inner">
+            <slot name="signage-text"></slot>
+            <div class="stripe">
+              <div class="left-stop"></div>
+              <div class="right-stop"></div>
             </div>
           </div>
         </div>
+      </div>
         
         <div class="railway-wrapper">
           <div class="railway"></div>
