@@ -21,10 +21,10 @@ class ProjectComponent extends HTMLElement {
     this.selectedProject = null;
     this.projects = [
       {
-        key: 'movie-theater-app',
-        label: 'Movie Theater App',
-        tagName: 'project-theater-app-component',
-        link: '#/project?project=movie-theater-app'
+        key: 'restaurant-app',
+        label: 'Restaurant App',
+        tagName: 'project-restaurant-component',
+        link: '#/project?project=restaurant-app'
       },
       {
         key: 'embrace',
@@ -33,10 +33,10 @@ class ProjectComponent extends HTMLElement {
         link: '#/project?project=embrace'
       },
       {
-        key: 'restaurant-app',
-        label: 'Restaurant App',
-        tagName: 'project-restaurant-component',
-        link: '#/project?project=restaurant-app'
+        key: 'movie-theater-app',
+        label: 'Movie Theater App',
+        tagName: 'project-theater-app-component',
+        link: '#/project?project=movie-theater-app'
       }
     ];
     this.projectMap = Object.fromEntries(
@@ -90,20 +90,20 @@ class ProjectComponent extends HTMLElement {
     if (!nav) return;
 
     nav.dropdownItemsData = [
-      { 
-        label: 'Movie Theater App',
-        link: '#/project?project=movie-theater-app',
-        key: 'movie-theater-app'
+      {
+        label: 'Restaurant App',
+        link: '#/project?project=restaurant-app',
+        key: 'restaurant-app'
       }, 
       { 
         label: 'EMBRACE',
         link: '#/project?project=embrace',
         key: 'embrace' 
       },
-      {
-        label: 'Restaurant App',
-        link: '#/project?project=restaurant-app',
-        key: 'restaurant-app'
+      { 
+        label: 'Movie Theater App',
+        link: '#/project?project=movie-theater-app',
+        key: 'movie-theater-app'
       }
     ];
 

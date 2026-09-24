@@ -82,10 +82,10 @@ class AppHomeComponent extends HTMLElement {
 
     this.carouselData = [
       { 
-        src: 'static/theater-app-carousel-cover.png',
-        label: 'Movie Theater App',
-        link: '#/project?project=movie-theater-app',
-        key: 'movie-theater-app' 
+        src: 'static/restaurant-app.png',
+        label: 'Restaurant App',
+        link: '#/project?project=restaurant-app',
+        key: 'restaurant-app' 
       },
       { 
         src: 'static/emb-parent-dashboard-carousel-cover.png',
@@ -94,10 +94,10 @@ class AppHomeComponent extends HTMLElement {
         key: 'embrace' 
       },
       { 
-        src: 'static/restaurant-app.png',
-        label: 'Restaurant App',
-        link: '#/project?project=restaurant-app',
-        key: 'restaurant-app' 
+        src: 'static/theater-app-carousel-cover.png',
+        label: 'Movie Theater App',
+        link: '#/project?project=movie-theater-app',
+        key: 'movie-theater-app' 
       }
     ];
     this.carouselComponent.data = this.carouselData;
