@@ -34,6 +34,7 @@ station-template {
   z-index: 2;
   max-width: 877px;
   max-height: 417px;
+  z-index: 6;
 }
 .train img {
   width: 90%;
@@ -86,8 +87,10 @@ station-template {
 
 carousel-component {
   position: absolute;
-  bottom: 3px;
+  top: 50%;
+  transform: translateY(-50%);
   right: 1rem;
+  z-index: 5;
 }
 
 
@@ -101,7 +104,7 @@ carousel-component {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25vh;
+  height: 25svh;
 }
 .train-map-wrapper {
   display: flex;
@@ -182,8 +185,8 @@ li:nth-child(2)::before {
 .introduction-content {
   position: absolute;
   top: 2rem;
-  left: 50%;
-  transform: translate(-50%);
+  right: 50%;
+  transform: translate(50%);
   width: 80vw;
   max-width: 800px;
   height: auto;
@@ -231,7 +234,8 @@ li:nth-child(2)::before {
 @media (width > 996px) {
   .introduction-content {
     width: 51vw;
-    left: 35%;
+    right: 3rem;
+    transform: translate(0);
   }
 }
 @media (768px <= width <= 996px) {
@@ -249,7 +253,6 @@ li:nth-child(2)::before {
 
   carousel-component {
     right: 0.5rem;
-    bottom: 120px;
   }
 
   /* nav */
@@ -293,12 +296,11 @@ li:nth-child(2)::before {
   }
 
   carousel-component {
-    bottom: 99px;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
     right: auto;
     &::part(carousel-container) {
-      height: 38vh;
+      height: 38svh;
       width: 93vw;
       padding: 1rem;
     }
@@ -331,7 +333,13 @@ li:nth-child(2)::before {
   .introduction-content {
     width: 90vw;
     margin: 0.5rem;
-    top: 35%;
+    top: 25svh;
+  }
+}
+
+@media (567px <= width) and (orientation: landscape) and (max-height: 480px) {
+  .introduction-content {
+    top: 0;
   }
 }
 
@@ -362,6 +370,7 @@ li:nth-child(2)::before {
     color: var(--dark-theme-caramel);
     bottom: 0.6rem;
     right: 1rem;
+    font-size: 14px;
   }
   .extended-text {
     display: none;
@@ -371,7 +380,7 @@ li:nth-child(2)::before {
     }
   }
   carousel-component {
-    bottom: 40px;
+    margin-top: 3rem;
   }
   .train-sign,
   .stripe {
@@ -381,10 +390,8 @@ li:nth-child(2)::before {
 
 /* Touch screens in landscape mode */
 @media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
-
   .train {
     width: 50%;
-    z-index: 3;
   }
   .nav-wrapper {
     height: 27vh;
@@ -408,23 +415,22 @@ li:nth-child(2)::before {
     display: none;
   }
   carousel-component {
-    bottom: 6px;
-
     &::part(carousel-container) {
-      height: 62vh;
+      height: 62svh;
       padding: 1rem;
     }
   }
 }
 
-@media (orientation: landscape) and (max-height: 480px) and (width > 740px) {
+@media (orientation: landscape) and (max-height: 480px) and (width > 767px) {
   .introduction-content {
-    left: 34vw;
+    left: 36vw;
     width: 63vw;
+    transform: translate(0);
   }
 }
 
-@media (orientation: landscape) and (max-height: 480px) and (max-width: 740px) {
+@media (orientation: landscape) and (max-height: 480px) and (max-width: 767px) {
   station-template {
     &:not(:first-of-type) {
       &::part(train-station-signage) {
@@ -436,7 +442,6 @@ li:nth-child(2)::before {
     &:has(.is-expanded) {
       top: 53%;
     }
-
   }
 }
 

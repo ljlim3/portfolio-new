@@ -9,16 +9,16 @@ a:-webkit-any-link {
   flex-direction: column;
   max-width: 1440px;
   width: 100vw;
-  height: 100vh;
+  height: 100svh;
   margin: auto;
 }
 .train-station-scene-wrapper {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 75svh;
 
   @media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
-    height: 67vh;
+    height: 67svh;
   }
 
 }
@@ -293,11 +293,12 @@ li:nth-child(2)::before {
     height: 19px;
   }
 }
-@media (width >= 768px) {
+@media (width > 768px) {
   .stand {
     left: 3rem;
   }
 }
+
 .extra {
   display: none;
 }
@@ -495,9 +496,9 @@ li:nth-child(2)::before {
   }
 }
 
-@media (orientation: landscape) and (max-height: 480px) and (max-width: 844px) and (pointer: coarse) {
+@media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
   .signage-board-outer {
-    left: 4.6rem;
+    left: 3rem;
     width: 223px;
     height: 161px;
 

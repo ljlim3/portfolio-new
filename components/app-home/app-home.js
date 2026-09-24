@@ -104,6 +104,12 @@ class AppHomeComponent extends HTMLElement {
 
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(ScrollToPlugin);
+    ScrollTrigger.config({ 
+      ignoreMobileResize: true 
+    });
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100); // Small delay lets the browser draw the layout before measuring
 
     this.resizeObserver = new ResizeObserver((entries) => this.handleResizeObserved(entries));
     this.resizeObserver.observe(document.body);
@@ -136,7 +142,9 @@ class AppHomeComponent extends HTMLElement {
     // 3. Normalize to a value between 0.000 and 1.000
     this.progress = (scrollLeft / maxScroll).toFixed(3);
 
-    this.updateRailwayScale();
+    setTimeout(() => {
+      this.updateRailwayScale();
+    }, 0);
   }
 
   /**
