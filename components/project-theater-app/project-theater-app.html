@@ -2,15 +2,15 @@
   <article>
     <header>
       <h1>Movie Theater App</h1>
-      <img src="static/movie-theater-app.png" alt="Movie theater app prototype">
+      <img src="static/movie-theater-app.png" alt="Movie theater app prototype" width="604" height="auto">
     </header>
 
     <section class="project-section first-section" aria-labelledby="background-heading">
       <h2 id="background-heading">Background</h2>
       <p>
-        The following movie theater app is a course project executed independently as part of the Human-Centered Design curriculum. 
+        The following movie theater app is a course project I worked on independently as part of the Human-Centered Design curriculum. 
         For this project, I addressed a provided persona's challenges with group movie ticket booking. By focusing on the persona's 
-        pain point&ndash;specifically the friction of coordinating seat selection for a group&ndash;I developed a solution that 
+        pain point&mdash;specifically the friction of coordinating seat selection for a group&mdash;I developed a solution that 
         streamlines the process for social moviegoers. 
       </p>
 
@@ -23,7 +23,7 @@
     <section class="project-section" aria-labelledby="our-user-heading">
       <h2 id="our-user-heading">Our user</h2>
       <p>
-        Jeanne-Marie works full time as a marketing manager. And after what feels like a long week, she likes to decompress by 
+        Jeanne-Marie works full time as a marketing manager. After what feels like a long week, she likes to decompress by 
         dining out with her friends on Friday nights. She and her friends have made Friday nights out a regular tradition, giving
         them a much-needed highlight to look forward to. As part of their weekly ritual, they also go see a movie together after 
         dinner. But there is one aspect of their ritual that stresses Jeanne-Marie out. Group booking. It's challenging and 
@@ -50,23 +50,17 @@
       </p>
 
       <div class="image-container layout-horizontal">
-        <img src="static/theater-app-sketches-1.jpg" alt="Sketch of screen 1: Select a location nearby page 1">
-        <img src="static/theater-app-sketches-2.jpg" alt="Sketch of screen 1: Select a location nearby page 2">
+        <img src="static/theater-app-sketches-1.jpg" alt="Sketch of screen 1: Select a location nearby page 1" width="380" height="auto">
+        <img src="static/theater-app-sketches-2.jpg" alt="Sketch of screen 1: Select a location nearby page 2" width="380" height="auto">
       </div>
 
       <h3 class="mt-5">Screen 1: Select a location nearby</h3>
       <p>
-        My initial idea was showing a map-centric search interface that provides a spatial visualization of theaters. This would 
+        My initial idea was showing a map-centric search interface that provides a geographical visualization of theaters. This would 
         allow Jeanne-Marie to easily identify the most convenient location for the group. But based on what the user wants to achieve, 
-        the primary utility of the app is not map-dependent. Considering this, my other solution was vertical result list, ordered 
-        based on user-selected filters.
-      </p>
-
-      <p>
-        From a development perspective, maps are resource-intensive and require high implementation effort along with ongoing 
-        maintenance. Since the use case was exclusive to theater locations (and did not require broader geographic discovery), I 
-        determined that the complexity of a map interface was unnecessary and out of scope for the primary user journey. 
-        So I set aside the idea of an interactive map for a future phase.
+        the primary utility of the app is not map-dependent. Since the use case was exclusive to theater locations (and did not require broader 
+        geographic discovery), I determined that the complexity of a map interface was unnecessary. Considering this, my other solution was 
+        vertical result list, ordered based on user-selected filters.
       </p>
 
       <h3>Screen 2: Select a movie</h3>
@@ -98,10 +92,13 @@
 
       <h3>Filter</h3>
       <p>
-        To reduce late-stage drop-offs (for example, the user reaches the final step only to find that the seats are no longer 
-        available at a selected theater), I designed the interface to provide a filter from the beginning. Based on the 
-        filter selections, which include how many seats the user wants to book, the app provides a list of theaters that have
-        the specified availability.
+        Since the app is essentially a “Google Search” exclusively for cinemas, I thought the search experience should be its foundational backbone. 
+        Related to search, I considered the following worst case scenario: the user goes through selecting a theater and then a movie, and 
+        reaches the final step of selecting the seats, only to find that there are no open blocks to keep their group of friends together. And 
+        without the help of the search engine, the user would have to go through trial and error to find the cinema that could accommodate the 
+        group seating. So to save the user&apos;s time and streamline the search and the overall experience, I designed the interface to provide a 
+        filter. Based on the filter selections, which include how many seats the user wants to book, the app provides a list of theaters that 
+        have the specified availability.      
       </p>
     </section>
 
@@ -114,7 +111,7 @@
       </p>
 
       <div class="image-container">
-        <img src="static/theater-app-low-fid-prototype.jpg" alt="Low-fidelity paper prototype of the theater app">
+        <img src="static/theater-app-low-fid-prototype.jpg" alt="Low-fidelity paper prototype of the theater app" width="532" height="auto">
       </div>
 
       <h3 class="mt-5">Feedback for Screen 1: Select location</h3>
@@ -122,14 +119,14 @@
         During the usability test session, the participant expressed privacy concerns about the app's default persistent 
         location tracking. So I moved from a default-on setting to an opt-in model. The participant also didn't recognize 
         what the filter button was for, and they expressed the possibility of overlooking it. To improve discoverability 
-        and engagement with the essential options, I created a separate screen, featured high-priority actions on this 
-        screen and provided a clearly labeled Add Filter functionality for additional filter options.
+        and engagement with the essential options, I created a separate landing screen, featured high-priority search criteria 
+        on this screen and provided a clearly labeled Add Filter functionality for additional filter options.
       </p>
 
       <h3>Feedback for Screen 2: Movie search page</h3>
       <p>
-        On this screen, I uncovered through participant feedback that the underlying logic of the movie layout unclear, 
-        as they couldn't tell how the information was sorted by. I addressed this by using clear headers.
+        On this screen, I uncovered through participant feedback that the underlying logic of the movie layout is unclear, 
+        as they couldn't tell what the information was sorted by. I addressed this by using clear headers.
       </p>
 
       <h3>Feedback for Screen 3: Date/Time Selection</h3>
@@ -150,7 +147,7 @@
       </p>
 
       <div class="image-container">
-        <img src="static/theater-app-wireframe.png" alt="Medium-fidelity wireframe of the theater app">
+        <img src="static/theater-app-wireframe.png" alt="Medium-fidelity wireframe of the theater app" width="532" height="auto">
       </div>
     </section>
 
@@ -160,7 +157,7 @@
         For the color scheme, I chose a dark-mode 'Black Box' asthetic, with the dark background acting as a stage to 
         highlight the core content through vibrant call-to-actions. I also wanted users to think and feel cinema while 
         using the app. Using the web accessibility checker plugin, I ensured that the colors passed WCAG AA standards 
-        at minimum to make the information readable and accessible to the broadest possible users.
+        at a minimum to make the information readable and accessible to the broadest possible users.
       </p>
     </section>
 
