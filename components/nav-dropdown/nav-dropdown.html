@@ -1,15 +1,20 @@
 <template id="nav-dropdown-template">
   <div class="nav-dropdown">
-    <button class="menu-btn">
+    <button 
+      class="menu-btn"
+      aria-haspopup="true"
+      aria-controls="navigation-menu"
+      aria-expanded="false"
+    >
       <span class="menu-btn-text">Projects</span>
       <i class="fa-solid fa-caret-down"></i>
       <span class="hamburger-line line-top"></span>
       <span class="hamburger-line line-middle"></span>
       <span class="hamburger-line line-bottom"></span>
     </button>
-    <div class="menu">
+    <nav id="navigation-menu" class="menu">
       <ul class="menu-list closed">
         <!-- Dynamic rendering of menu items -->
       </ul>
-    </div>
+    </nav>
 </template>

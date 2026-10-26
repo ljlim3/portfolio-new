@@ -3,17 +3,17 @@
       <div class="inner-wrapper">          
         <station-template id="home" data-page="first">
           <div slot="train" class="train">
-              <img class="train-body" src="static/train-body-3.svg" />
+              <img class="train-body" src="static/train-body-3.svg" alt="Train" />
               <div class="train-wheel-wrapper">
-                <img class="train-wheel" src="static/train-wheel.svg" />
-                <img class="train-wheel" src="static/train-wheel.svg" />
-                <img class="train-wheel" src="static/train-wheel.svg" />
+                <img class="train-wheel" src="static/train-wheel.svg" alt="" />
+                <img class="train-wheel" src="static/train-wheel.svg" alt="" />
+                <img class="train-wheel" src="static/train-wheel.svg" alt="" />
               </div>
             </div>
             
-          <div slot="signage-text">
-            <div class="line-one">Welcome to</div>
-            <div class="line-two">Lydia Lim's Portfolio</div>
+          <div slot="signage-text" id="signage-text" tabindex="-1">
+            <h2 class="line-one">Welcome to</h2>
+            <h2 class="line-two">Lydia Lim's Portfolio</h2>
           </div>
         </station-template>
         <station-template sign-pos="left" id="introduction" class="intro" data-page="mid">
@@ -32,7 +32,7 @@
                   Users shouldn't have to grapple with a user interface, 
                   feel excluded from an experience, nor question the security of their data. From initial concept 
                   to final craft, I constantly push boundaries to build solutions that repsect user time, support 
-                  emotional well-being and capabilities, and protect privacy to cultivate lasting user trust.
+                  emotional well-being, and protect privacy to cultivate lasting user trust.
                 </span>
               </p>
               <button class="toggle-drawer-btn">
@@ -41,12 +41,12 @@
             </div>
           </div>
           <div slot="signage-text"> 
-            <div class="line-two single">Introduction</div>
+            <h2 class="line-two single">Introduction</h2>
           </div>
         </station-template>
         <station-template sign-pos="left" id="projects" data-page="last">
           <div slot="signage-text"> 
-            <div class="line-two single">Projects</div>
+            <h2 class="line-two single">Projects</h2>
           </div>
 
           <carousel-component slot="carousel">
@@ -54,7 +54,7 @@
         </station-template>
       </div>
   
-      <div class="nav-wrapper desktop">
+      <nav class="nav-wrapper desktop">
         <ul class="train-map-wrapper">
           <li class="routing-link selected" data-link-index="0">
             <div class="train-stop"></div>
@@ -68,8 +68,7 @@
             <div class="train-stop"></div>
             <a class="link-three" href="#projects">Projects</a>
           </li>
-
         </ul>
-      </div>
+      </nav>
     </div>
   </template>

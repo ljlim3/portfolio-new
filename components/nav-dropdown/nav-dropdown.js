@@ -180,6 +180,7 @@ class NavDropdownComponent extends HTMLElement {
     this.navDropdown.classList.add('open');
     this.menuList.classList.remove('closed');
     this.caretIcon.classList.replace('fa-caret-down', 'fa-caret-up');
+    this.menuBtn.setAttribute('aria-expanded', true);
   }
 
   menuClosed() {
@@ -187,6 +188,7 @@ class NavDropdownComponent extends HTMLElement {
     this.navDropdown.classList.remove('open');
     this.menuList.classList.add('closed');
     this.caretIcon.classList.replace('fa-caret-up', 'fa-caret-down');
+    this.menuBtn.setAttribute('aria-expanded', false);
   }
 
   onMenuListClick(e) {

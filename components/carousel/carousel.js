@@ -62,11 +62,12 @@ class CarouselComponent extends HTMLElement {
       const listItem = document.createElement('li');
       listItem.classList.add('item');
       listItem.setAttribute('part', 'item');
-      listItem.setAttribute('aria-label', `slide ${i} of ${d.length}`);
+      listItem.setAttribute('aria-label', `slide ${i + 1} of ${data.length}`);
       listItem.dataset.val = `${i}`;
 
       const img = document.createElement('img');
       img.setAttribute('src', d.src);
+      img.setAttribute('alt', d.label);
 
       const labelContainer = document.createElement('div');
       labelContainer.classList.add('item-label-container');

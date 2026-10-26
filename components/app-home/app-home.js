@@ -3,9 +3,9 @@ import '../station/station.js';
 import '../carousel/carousel.js';
 
 const SECTION_STATES = {
-  home: { home: true, introduction: false, projects: false },
-  introduction: { home: false, introduction: true, projects: false },
-  projects: { home: false, introduction: false, projects: true },
+  home: { home: true, intro: false, proj: false },
+  introduction: { home: false, intro: true, proj: false },
+  projects: { home: false, intro: false, proj: true },
 }
 
 const SECTION_LINKS = {
@@ -66,6 +66,9 @@ class AppHomeComponent extends HTMLElement {
 
     this.innerWrapperEl = this.shadowRoot.querySelector('.inner-wrapper');
 
+    this.signageText = this.shadowRoot.querySelector('#signage-text');
+    this.signageText.focus();
+
     this.horizontalTween;
     this.start = 0;
     this.end = 0;
@@ -85,7 +88,7 @@ class AppHomeComponent extends HTMLElement {
         src: 'static/restaurant-app.png',
         label: 'Restaurant App',
         link: '#/project?project=restaurant-app',
-        key: 'restaurant-app' 
+        key: 'restaurant-app'
       },
       { 
         src: 'static/emb-parent-dashboard-carousel-cover.png',
@@ -306,7 +309,6 @@ class AppHomeComponent extends HTMLElement {
     const innerWrapperEl = this.shadowRoot.querySelector('.inner-wrapper');
     const trainWheels = this.shadowRoot.querySelectorAll('.train-wheel');
     const trainEl = this.shadowRoot.querySelector('.train');
-    const stations = this.shadowRoot.querySelectorAll('station-template');
 
     function getScrollAmount () {
       const innerWrapperOffsetWidth = innerWrapperEl.offsetWidth;
@@ -367,7 +369,7 @@ class AppHomeComponent extends HTMLElement {
               this.selectedLink = selectedIndex;
               const newState = SECTION_STATES[this.linkMap[selectedIndex]];
               Object.assign(this.appliedLink, newState);
-
+              
               history.replaceState(null, null, ' ');
             }
 

@@ -33,6 +33,11 @@ a {
   display: block;
   width: 100%;
   height: 100%;
+
+  &:focus-visible {
+    outline: 3px solid #005fcc;
+    outline-offset: -3px; 
+  }
 }
 .item {
   position: relative;
