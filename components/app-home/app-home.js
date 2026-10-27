@@ -17,7 +17,7 @@ const SECTION_LINKS = {
 class AppHomeComponent extends HTMLElement {
 
   static get SOURCE_URL() {
-    return new URL('./app-home.html', import.meta.url);
+    return new URL('./app-home.html?v=1', import.meta.url);
   }
 
   constructor() {
