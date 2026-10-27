@@ -17,7 +17,7 @@ const SECTION_LINKS = {
 class AppHomeComponent extends HTMLElement {
 
   static get SOURCE_URL() {
-    return new URL('./app-home.html?v=1', import.meta.url);
+    return new URL('./app-home.html', import.meta.url);
   }
 
   constructor() {
@@ -178,7 +178,7 @@ class AppHomeComponent extends HTMLElement {
 
   async adoptStylesheets() {
     const cssUrls = [
-      new URL('./app-home.css', import.meta.url),
+      new URL('./app-home.css?v=1', import.meta.url),
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css'
     ];
 
