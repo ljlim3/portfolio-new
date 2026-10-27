@@ -178,7 +178,7 @@ class AppHomeComponent extends HTMLElement {
 
   async adoptStylesheets() {
     const cssUrls = [
-      new URL('./app-home.css?v=1', import.meta.url),
+      new URL('./app-home.css?v=1.0.1', import.meta.url),
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css'
     ];
 
