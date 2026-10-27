@@ -15,7 +15,6 @@ button {
   scrollbar-width: none;
 }
 .inner-wrapper {
-  overflow: hidden;
   display: flex;
   width: 300vw;
   max-width: calc(1440px * 3);
@@ -23,7 +22,6 @@ button {
 }
 
 station-template {
-  flex: 0 0 100vw;
   width: 100vw;
   height: 100svh;
 }
