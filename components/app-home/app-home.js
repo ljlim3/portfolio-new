@@ -56,22 +56,25 @@ class AppHomeComponent extends HTMLElement {
     this.shadowRoot.replaceChildren(template.content.cloneNode(true));
 
     this.selectedLink = 0;
-    this.navHomeBtn = this.shadowRoot.querySelector('.routing-link[data-link-index="0"]');
-    this.navIntroBtn = this.shadowRoot.querySelector('.routing-link[data-link-index="1"]');
-    this.navProjectBtn = this.shadowRoot.querySelector('.routing-link[data-link-index="2"]');
+    this.navLinks = this.shadowRoot.querySelectorAll('.routing-link');
     this.navBar = this.shadowRoot.querySelector('.train-map-wrapper');
     this.linkArr = this.shadowRoot.querySelectorAll('.routing-link');
     this.carouselComponent = this.shadowRoot.querySelector('carousel-component');
     this.stations = this.shadowRoot.querySelectorAll('station-template');
+    this.currStation = null;
+    this.prevStation = null;
 
     this.innerWrapperEl = this.shadowRoot.querySelector('.inner-wrapper');
 
-    this.signageText = this.shadowRoot.querySelector('#signage-text');
-    this.signageText.focus();
+    this.signageText;
 
     this.horizontalTween;
     this.start = 0;
     this.end = 0;
+
+    this.timeoutIdUpdateUIScale;
+    this.timeoutIdRefresh;
+    this.timeoutIdTweenUpdate;
     
     this.userInitiatedScroll = false;
     this.prevPos = 0;
@@ -110,7 +113,9 @@ class AppHomeComponent extends HTMLElement {
     ScrollTrigger.config({ 
       ignoreMobileResize: true 
     });
-    setTimeout(() => {
+
+    clearTimeout(this.timeoutIdRefresh);
+    this.timeoutIdRefresh = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100); // Small delay lets the browser draw the layout before measuring
 
@@ -145,7 +150,8 @@ class AppHomeComponent extends HTMLElement {
     // 3. Normalize to a value between 0.000 and 1.000
     this.progress = (scrollLeft / maxScroll).toFixed(3);
 
-    setTimeout(() => {
+    clearTimeout(this.timeoutIdUpdateUIScale);
+    this.timeoutIdUpdateUIScale = setTimeout(() => {
       this.updateRailwayScale();
     }, 0);
   }
@@ -241,32 +247,18 @@ class AppHomeComponent extends HTMLElement {
   }
 
   handleNavUpdate(linkIndex) {
-    switch (linkIndex) {
-      case 0: 
-        if (!this.appliedLink.home) {
-          this.navHomeBtn.classList.add('selected');
-          this.linkArr[this.selectedLink].classList.remove('selected');
+    if (this.selectedLink === linkIndex) return;
 
-          history.replaceState(null, null, ' ');
-        }
-        break;
-      case 1:
-        if (!this.appliedLink.intro) {
-          this.navIntroBtn.classList.add('selected');
-          this.linkArr[this.selectedLink].classList.remove('selected');
+    this.navLinks[linkIndex].classList.add('selected');
+    this.linkArr[this.selectedLink].classList.remove('selected');
 
-          history.replaceState(null, null, '#introduction');
-        }
-        break;
-      case 2:
-        if (!this.appliedLink.proj) {
-          this.navProjectBtn.classList.add('selected');
-          this.linkArr[this.selectedLink].classList.remove('selected');
+    const hash = 
+      linkIndex === 0 ? ' ' : 
+      linkIndex === 1 ? '#introduction' :
+      '#projects';
 
-          history.replaceState(null, null, '#projects');
-        }
-        break;
-    }
+    history.replaceState(null, null, hash);
+
     this.selectedLink = linkIndex;
     const newState = SECTION_STATES[this.linkMap[linkIndex]];
     Object.assign(this.appliedLink, newState);
@@ -287,8 +279,41 @@ class AppHomeComponent extends HTMLElement {
           case 'projects':
             return 'max';
         }
+      },
+      onComplete: () => {
+        if (section === this.prevStation?.id) return;
+
+        switch (section) {
+          case 'home':
+            this.updateStation(0);
+            this.updateA11y({stationIndex: 0, tabIndex: -1});
+            break;
+          case 'introduction':
+            this.updateStation(1);
+            this.updateA11y({stationIndex: 1, tabIndex: -1});
+            break;          
+          case 'projects':
+            this.updateStation(2);
+            this.updateA11y({stationIndex: 2, tabIndex: 0});
+            break;
+        }
       }
     });
+  }
+
+  updateA11y({stationIndex, tabIndex}) {
+    this.signageText = this.stations[stationIndex].querySelector('.signage-text');
+
+    if (this.signageText) {
+      this.signageText.focus({preventScroll: true});
+    }
+
+    this.carouselComponent.tabIndex = tabIndex;
+  }
+
+  updateStation(index) {
+    this.prevStation = this.currStation;
+    this.currStation = this.stations[index];
   }
 
   updateRailwayScale() {
@@ -338,7 +363,8 @@ class AppHomeComponent extends HTMLElement {
       ScrollTrigger.refresh(true); 
     }
 
-    setTimeout(() => {
+    clearTimeout(this.timeoutIdTweenUpdate);
+    this.timeoutIdTweenUpdate = setTimeout(() => {
       this.start = this.horizontalTween.scrollTrigger.start;
       this.end = this.horizontalTween.scrollTrigger.end;
     }, 50);
@@ -362,38 +388,25 @@ class AppHomeComponent extends HTMLElement {
 
         if (this.userInitiatedScroll || this.screenResize) {
           if (currentX <= 0.4) {
-            const selectedIndex = parseInt(this.navHomeBtn.dataset.linkIndex);
+            const selectedIndex = parseInt(this.navLinks[0].dataset.linkIndex);
             if (!this.appliedLink.home && selectedIndex !== this.selectedLink) {
-              this.navHomeBtn.classList.add('selected');
-              this.linkArr[this.selectedLink].classList.remove('selected');
-              this.selectedLink = selectedIndex;
-              const newState = SECTION_STATES[this.linkMap[selectedIndex]];
-              Object.assign(this.appliedLink, newState);
-              
-              history.replaceState(null, null, ' ');
+              this.updateStation(0);
+              this.updateA11y({stationIndex: 0, tabIndex: -1});
+              this.handleNavUpdate(selectedIndex);
             }
-
           } else if (currentX > 0.4 && currentX <= 0.8) {
-            const selectedIndex = parseInt(this.navIntroBtn.dataset.linkIndex);
+            const selectedIndex = parseInt(this.navLinks[1].dataset.linkIndex);
             if (!this.appliedLink.introduction && selectedIndex !== this.selectedLink) {
-              this.navIntroBtn.classList.add('selected');
-              this.linkArr[this.selectedLink].classList.remove('selected');
-              this.selectedLink = selectedIndex;
-              const newState = SECTION_STATES[this.linkMap[selectedIndex]];
-              Object.assign(this.appliedLink, newState);
-
-              history.replaceState(null, null, '#introduction');
+              this.updateStation(1);
+              this.updateA11y({stationIndex: 1, tabIndex: -1});
+              this.handleNavUpdate(selectedIndex);
             }
           } else if (currentX > 0.8) {
-            const selectedIndex = parseInt(this.navProjectBtn.dataset.linkIndex);
+            const selectedIndex = parseInt(this.navLinks[2].dataset.linkIndex);
             if (!this.appliedLink.project && selectedIndex !== this.selectedLink) {
-              this.navProjectBtn.classList.add('selected');
-              this.linkArr[this.selectedLink].classList.remove('selected');
-              this.selectedLink = selectedIndex;
-              const newState = SECTION_STATES[this.linkMap[selectedIndex]];
-              Object.assign(this.appliedLink, newState);
-
-              history.replaceState(null, null, '#projects');
+              this.updateStation(2);
+              this.updateA11y({stationIndex: 2, tabIndex: 0});
+              this.handleNavUpdate(selectedIndex);
             }
           }
         }      
@@ -459,6 +472,9 @@ class AppHomeComponent extends HTMLElement {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     this.horizontalTween?.kill();
     this.outerWrapperEl?.removeEventListener('wheel', this.handleWheel);
+    clearTimeout(this.timeoutIdRefresh);
+    clearTimeout(this.timeoutIdTweenUpdate);
+    clearTimeout(this.timeoutIdUpdateUIScale);
   }
 }
 customElements.define('app-home-component', AppHomeComponent);

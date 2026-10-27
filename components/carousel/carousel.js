@@ -29,6 +29,15 @@ class CarouselComponent extends HTMLElement {
 
     this.carousel = this.shadowRoot.querySelector('.carousel');
     this.populateItems(this.#data);
+    this.carousel.addEventListener('focusin', (e) => this.handleFocus(e));
+  }
+
+  handleFocus(event) {
+    const target = event.target.closest('.item');
+
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: 'smooth', inline: 'nearest'});
   }
 
   async loadTemplate() {

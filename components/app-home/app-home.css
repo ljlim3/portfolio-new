@@ -15,6 +15,7 @@ button {
   scrollbar-width: none;
 }
 .inner-wrapper {
+  overflow: hidden;
   display: flex;
   width: 300vw;
   max-width: calc(1440px * 3);
@@ -22,6 +23,7 @@ button {
 }
 
 station-template {
+  flex: 0 0 100vw;
   width: 100vw;
   height: 100svh;
 }
@@ -61,17 +63,25 @@ station-template {
 
 
 /* train station signage */
+h2[tabindex="-1"]:focus {
+  outline: none;
+}
+.signage-text {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
 .line-one,
 .line-two {
   color: var(--dark-theme-text);
 }
 .line-one {
   font-size: 1.3rem;
-  margin: 1rem 1.5rem 1.5rem 1rem;
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
 }
 .line-two {
   font-size: 1.6rem;
-  margin: 0rem 1.5rem 0.5rem 1rem;
+  margin: 0rem 1.5rem 0.5rem 1.5rem;
   text-wrap: wrap;
 }
 .line-two.single {
@@ -87,7 +97,7 @@ station-template {
 
 carousel-component {
   position: absolute;
-  top: 50%;
+  top: 56%;
   transform: translateY(-50%);
   right: 1rem;
   z-index: 5;
@@ -287,7 +297,7 @@ li:nth-child(2)::before {
     margin: 0.7rem 1.5rem 1rem 1rem;
   }
   .line-two {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .signage-board-outer {
