@@ -67,9 +67,7 @@ h2[tabindex="-1"]:focus {
   outline: none;
 }
 .signage-text {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+  margin: 0.6rem 0;
 }
 .line-one,
 .line-two {
@@ -251,8 +249,8 @@ li:nth-child(2)::before {
 @media (768px <= width <= 996px) {
   .line-one {
     font-size: 1.2rem;
-    margin-top: 0.6rem;
-    margin-bottom: 0.7rem;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
   }
   .line-two {
     font-size: 1.5rem;
