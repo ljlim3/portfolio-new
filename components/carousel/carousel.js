@@ -57,7 +57,7 @@ class CarouselComponent extends HTMLElement {
 
   async adoptStyleSheets() {
     const cssUrls = [
-      new URL('./carousel.css', import.meta.url)
+      new URL('./carousel.css?v=1', import.meta.url)
     ];
 
     const stylesheets = await Promise.all(cssUrls.map(getStylesheet));
