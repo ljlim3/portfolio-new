@@ -14,6 +14,11 @@ class ProjectRestaurantComponent extends HTMLElement {
   async connectedCallback() {
     await this.loadTemplate();
     await this.adoptStylesheets();
+
+    const heading = this.shadowRoot.querySelector('[data-heading]');
+    if (heading) {
+      heading.focus();
+    }
   }
 
   async loadTemplate() {

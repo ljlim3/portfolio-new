@@ -3,6 +3,19 @@
 *::after {
   box-sizing: border-box;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  padding: 0;
+  border-width: 0;
+  margin: -1px;
+}
+
 button {
   cursor: pointer;
 }
@@ -61,11 +74,16 @@ station-template {
 
 
 /* train station signage */
+h1[tabindex="-1"]:focus,
 h2[tabindex="-1"]:focus {
   outline: none;
 }
 .signage-text {
   margin: 0.6rem 0;
+
+  & > span {
+    display: block;
+  }
 }
 .line-one,
 .line-two {

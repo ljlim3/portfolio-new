@@ -14,7 +14,7 @@ class CarouselComponent extends HTMLElement {
   constructor() {
     super();
 
-    this.attachShadow({ mode: 'open' }); // allows access to internal structure for external scripts through element.shadowRoot
+    this.attachShadow({ mode: 'open', delegatesFocus: true }); // allows access to internal structure for external scripts through element.shadowRoot
     this._initialized = false;
     this.#data = [];
   }

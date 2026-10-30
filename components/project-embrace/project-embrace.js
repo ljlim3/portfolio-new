@@ -17,6 +17,11 @@ class ProjectEmbraceComponent extends HTMLElement {
       this.shadowRoot.replaceChildren(template.content.cloneNode(true));
     }
     this.adoptStylesheets();
+
+    const heading = this.shadowRoot.querySelector('[data-heading]');
+    if (heading) {
+      heading.focus();
+    }
   }
 
   async loadTemplate() {

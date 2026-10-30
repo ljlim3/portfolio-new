@@ -19,6 +19,10 @@ class ProjectTheaterAppComponent extends HTMLElement {
     
     this.adoptStylesheets();
 
+    const heading = this.shadowRoot.querySelector('[data-heading]');
+    if (heading) {
+      heading.focus();
+    }
   }
 
   async loadTemplate() {

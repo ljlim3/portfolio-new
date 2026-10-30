@@ -60,7 +60,7 @@ class AppHomeComponent extends HTMLElement {
     this.navBar = this.shadowRoot.querySelector('.train-map-wrapper');
     this.linkArr = this.shadowRoot.querySelectorAll('.routing-link');
     this.carouselComponent = this.shadowRoot.querySelector('carousel-component');
-    this.stations = this.shadowRoot.querySelectorAll('station-template');
+    this.stations = [...this.shadowRoot.querySelectorAll('station-template')];
     this.currStation = null;
     this.prevStation = null;
 
@@ -178,7 +178,7 @@ class AppHomeComponent extends HTMLElement {
 
   async adoptStylesheets() {
     const cssUrls = [
-      new URL('./app-home.css?v=1.0.1', import.meta.url),
+      new URL('./app-home.css?v=1.0.2', import.meta.url),
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css'
     ];
 
@@ -281,7 +281,7 @@ class AppHomeComponent extends HTMLElement {
         }
       },
       onComplete: () => {
-        if (section === this.prevStation?.id) return;
+        if (section === this.currStation?.id) return;
 
         switch (section) {
           case 'home':
@@ -303,6 +303,9 @@ class AppHomeComponent extends HTMLElement {
 
   updateA11y({stationIndex, tabIndex}) {
     this.signageText = this.stations[stationIndex].querySelector('.signage-text');
+    this.linkArr[stationIndex].querySelector('a').setAttribute('aria-current', 'page');
+    if (this.prevStation)
+      this.linkArr[this.stations.indexOf(this.prevStation)].querySelector('a').removeAttribute('aria-current');
 
     if (this.signageText) {
       this.signageText.focus({preventScroll: true});
@@ -317,8 +320,7 @@ class AppHomeComponent extends HTMLElement {
   }
 
   updateRailwayScale() {
-    const stations = this.shadowRoot.querySelectorAll('station-template');
-    stations.forEach((stationEl) => {
+    this.stations.forEach((stationEl) => {
       if (this.progress > 0.178) {
         stationEl.scaleDownRailway = true;
         stationEl.onScaleDownRailway();
