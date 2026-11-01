@@ -199,9 +199,11 @@ class NavDropdownComponent extends HTMLElement {
       const targetIndex = parseInt(target.dataset.itemIndex);
       if (targetIndex !== this.selectedIndex) {
         target.classList.add('selected');
-
+        target.querySelector('a').setAttribute('aria-current', 'page');
+  
         if (this.selectedIndex !== -1) {
           this.listItems[this.selectedIndex].classList.remove('selected');
+          this.listItems[this.selectedIndex].querySelector('a').removeAttribute('aria-current');
         }
         this.selectedIndex = targetIndex;
       }
